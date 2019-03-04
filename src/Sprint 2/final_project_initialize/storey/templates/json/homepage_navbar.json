@@ -1,0 +1,7 @@
+{
+  "navbar_isVisible" : "{{navbar.isVisible}}",
+  "navbar_logo": {% if navbar.logo %}"{{navbar.logo.url}}"{% else %}null{% endif %},
+  "navbar_description": "{{navbar.text}}",
+  "navbar_height": "{{navbar.logo_height}}",
+  "navbar_width": "{{navbar.logo_width}}"
+}

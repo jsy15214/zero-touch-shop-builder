@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Product Page</title>
+  {% load static %}
+  {% block stylesheet %}
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" >
+  <link rel="stylesheet" href="{% static 'boot_for_nav.css' %}" >
+  <link rel="stylesheet" href="{% static 'footer.css' %}" >
+  <!-- Custom Theme Style -->
+  <link rel="stylesheet" href="{% static 'custom.shop.css' %}" >
+  <link rel="stylesheet" href="{% static 'navbar_preview.css' %}" >
+  <link rel="stylesheet" href="{% static 'product_demo.css' %}" >
+  <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  {% endblock %}
+
+<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/collectionpage_allignment.js' %}"></script>
+<script type="text/javascript" src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
+
+</head>
+
+
+<body>
+
+  <div class="row" >
+    <section id="preview_navbar" style="width: 100%;">
+      <nav class="navbar navbar-expand-md navbar-dark navbar-custom">
+        <div class="container">
+          <div id="navbar">
+            
+            <a class= "navbartext" href="{% url 'shopCollectionList' shop_name=shop_name order_id=order_id%}" style="color: white">Product List</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              {% if shop_owner == view_name %}
+              <li class="nav-item">
+                <a class = 'nav-link' href="{% url 'user_portal' %}" style = "display: inline">BACK TO USER PORTAL</a>
+                <a class = 'nav-link' href="{% url 'shopwebsite_homepage' shop_name %}" style = "display: inline">BACK TO SHOP HOMEPAGE</a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- nav ends -->
+      <div class = "container_shop">
+        <div class = "row">
+        {% if sorting %}
+        <div class ="dropdownsorting">
+          <button class="dropbtn">Sort By</button>
+          <div class="dropdownsorting-content">
+            <a href="{% url 'sortByPriceHL' shop_name=shop_name order_id=order_id %}">Price High To Low</a>
+            <a href="{% url 'sortByPriceLW' shop_name=shop_name order_id=order_id %}">Price Low To High</a>
+            <a href="{% url 'sortByAvailability' shop_name=shop_name order_id=order_id %}">Availability</a>
+          </div>
+        </div>
+        {% endif %}
+      {% if filtering %}
+      <div class ="dropdownsorting">
+      <button class="dropbtn">Select a category</button>
+      <div class="dropdownsorting-content">
+        <a href="{% url 'filterByCategory' shop_name=shop_name order_id=order_id category_id=0 %}">Men</a>
+        <a href="{% url 'filterByCategory' shop_name=shop_name order_id=order_id category_id=1 %}">Women</a>
+        <a href="{% url 'filterByCategory' shop_name=shop_name order_id=order_id category_id=2 %}">Kids</a>
+     </div>
+     </div>
+      {% endif %}
+
+      </div>
+        <section style="width: 100;padding-bottom: 800px;" >
+          <div class="right_col" role="main" style="margin-bottom: 0px;">
+            <div class="row" style="width: 100%">
+              {% for product in products %}
+
+              <div class="col-sm-4">
+                <div class="product-grid5">
+                  <div class="product-image5">
+
+                    <a href="#">
+                      <img class="pic-1" src="{% url 'picture' product.id%}">
+                      <img class="pic-2" src="{% url 'picture' product.id%}">
+                    </a>
+                    <a href="{% url 'addToShoppingCart' shop_name=shop_name order_id=order_id product_id=product.id%}" class="select-options"><i class="fa fa-arrow-right"></i> Add to cart</a>
+                  </div>
+                  <div class="product-content">
+                    <h3 class="title"><a href="{% url 'shopProductDetail' shop_name=shop_name order_id=order_id id=product.id%}">{{product.name}}</a></h3>
+                    <div class="price">$ {{product.price}}</div>
+                  </div>
+                </div>
+              </div>
+              {% if forloop.counter|divisibleby:3 %}
+            </div>
+            <div class="row">
+              {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+
+        <a class = "cart" href="{% url 'viewShoppingCart' shop_name=shop_name order_id=order_id %}">VIEW SHOPPING CART</a>
+
+          <div class="pagination" style="padding-left: 45%; padding-bottom: 10px; font-size: 15px;">
+            <span class="step-links">
+              {% if products.has_previous %}
+              <a href="?page=1"style="font-size: 12px;">&laquo; first</a>
+              <a href="?page={{ products.previous_page_number }}">previous</a>
+              {% endif %}
+
+              <span class="current">
+                Page {{ products.number }} of {{ products.paginator.num_pages }}.
+              </span>
+
+              {% if products.has_next %}
+              <a href="?page={{ products.next_page_number }}">next</a>
+              <a href="?page={{ products.paginator.num_pages }}" style="font-size: 12px;">last &raquo;</a>
+              {% endif %}
+            </span>
+          </div>
+        </section>
+      </div>
+      <!-- end can-edit section -->
+
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<!-- /page content -->
+
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+</body>
+
+
+
+</html>

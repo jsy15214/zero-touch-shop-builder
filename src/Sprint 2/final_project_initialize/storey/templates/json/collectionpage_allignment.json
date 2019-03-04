@@ -1,0 +1,6 @@
+{
+  "allignment_row" : "{{allignment.row}}",
+  "allignment_col": "{{allignment.col}}",
+  "allignment_sorting": "{{allignment.sorting}}",
+  "allignment_filtering": "{{allignment.filtering}}"
+}

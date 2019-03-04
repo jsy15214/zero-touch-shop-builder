@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Template</title>
+  {% load static %}
+  {% block stylesheet %}
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" >
+  <link rel="stylesheet" href="{% static 'boot_for_nav.css' %}" >
+  <link rel="stylesheet" href="{% static 'footer.css' %}" >
+  <!-- Custom Theme Style -->
+  <link rel="stylesheet" href="{% static 'custom.min.css' %}" >
+  <link rel="stylesheet" href="{% static 'navbar_preview.css' %}" >
+  <link rel="stylesheet" href="{% static 'one-page-wonder.css' %}" >
+  <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  {% endblock %}
+  <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/homepage.js' %}"></script>
+  <script type="text/javascript" src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
+
+</head>
+
+<body class="nav-md" style="overflow-x: hidden;">
+  <div class="container body" style="margin-left: 0; margin-right: 0">
+    <div class="main_container">
+      <div class="col-md-3 left_col">
+        <div class="left_col scroll-view">
+          <div class="navbar nav_title" style="border: 0;">
+            <a href="{% url 'user_portal' %}" class="site_title"><span>STOREY.COM</span></a>
+          </div>
+
+          <div class="clearfix"></div>
+
+          <!-- menu profile quick info -->
+          <div class="profile clearfix">
+            <div class="profile_pic">
+              <img src="{% static 'img.jpg' %}"  class="img-circle profile_img">
+            </div>
+            <div class="profile_info">
+              <span>Welcome,</span>
+              <h2>Username</h2>
+            </div>
+          </div>
+          <!-- /menu profile quick info -->
+          <br>
+          <!-- sidebar menu -->
+          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section">
+              <h3>Footer</h3>
+              <br>
+              <ul class="nav side-menu">
+                <div class = "wrap_form">
+                 <form id="postarea_4" enctype="multipart/form-data" method="POST" >
+                  <table>
+                   {{footer_form}}
+                 </table>
+                 <div class='text-center'>
+                   <button type="submit" class="btn btn-btn-light submit" id="submit_footer">Save</button>
+                   <button type="button" class="btn btn-btn-light submit" id="back">
+                    <a href ="{% url 'edit_template' %}">Back</a>
+                  </button>
+                </div>
+                {% csrf_token %}
+              </form>
+            </div>             
+          </ul>
+        </div>
+
+      </div>
+      <!-- /sidebar menu -->
+
+      <!-- /menu footer buttons -->
+      <div class="sidebar-footer hidden-small">
+        <a data-toggle="tooltip" data-placement="top" title="Settings">
+          <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+        </a>
+        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+          <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+        </a>
+        <a data-toggle="tooltip" data-placement="top" title="Lock">
+          <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+        </a>
+        <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+          <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+        </a>
+      </div>
+      <!-- /menu footer buttons -->
+    </div>
+  </div>
+
+  <!-- top navigation -->
+  <div class="top_nav">
+    <div class="nav_menu">
+      <nav>
+        <div class="nav toggle">
+          <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="">
+            <a  class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              <img src="{% static 'img.jpg' %}" alt="">Username
+              <span class=" fa fa-angle-down"></span>
+            </a>
+            <ul class="dropdown-menu dropdown-usermenu pull-right">
+              <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+            </ul>
+          </li>
+
+          <li role="presentation" class="dropdown">
+
+            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+              <li>
+                <a><span class="image"><img src="{% static 'img.jpg' %}" alt="Profile Image" /></span></a>
+              </li>
+              <li>
+                <div class="text-center">
+                  <a>
+                    <i class="fa fa-angle-right"></i>
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <!-- /top navigation -->
+
+  <!-- page content -->
+  <div class="right_col" role="main">
+   <!-- NavBar Preview -->
+   <div class="row" >
+    <section id="preview_navbar" style="width: 100%">
+      <nav class="navbar navbar-expand-md navbar-dark navbar-custom">
+        <div class="container">
+          <div id="navbar">
+            <img src = "/static/media/{{navbar.logo}}" width="{{navbar.logo_width}}" height="{{navbar.logo_height}}" id="narbar_img">
+            <span class = 'navbartext'>{{navbar.text}}</span>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="#">Sign Up</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Log In</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </section>
+      <!-- Header Preview -->
+      <section id="preview_header">
+        <div class="row" >
+         <header class="masthead text-center text-white" id="headimage" style="background-image:url(/static/media/{{header.logo}})">
+          <div class="masthead-content" >
+            <div class="container">
+              <h1 class="masthead-heading mb-0" id="headertitle">{{header.text}}</h1>
+            </div>
+          </div>
+        </header>
+      </div>
+
+        <!-- Product Demo Preview -->
+        <div class="Showcase" style="width: 100%">
+          <section id="preview_demo_1" style="width: 100%">
+            <div class="row no-gutters" style="margin-left: 0rem; margin-right: 0rem;">
+              <div class="col-lg-6 order-lg-1 jumbotron text-black rounded bg-white">
+                <div class="my-auto demotext" id="c1_container">
+                  <h1 class="display-4 font-italic" id="product_name_1"> {{demo.name_1}} </h1>
+                  <p class="lead my-3" style="color: black" id="description_1">{{demo.description_1}}</p>
+                  <p class="lead mb-0"><a href="#" style="color: grey">View More</a></p>
+                </div>
+              </div>
+              <div class="col-lg-6 order-lg-2 text-white showcase-img" id="product_demo_img_1" style="background-image:url(/static/media/{{demo.picture_1}})">
+              </div>
+            </div>
+        </section>
+        <section id="preview_demo_2" style="width: 100%">
+          <div class="row no-gutters" style="margin-left: 0rem; margin-right: 0rem;">
+            <div class="col-lg-6 text-white showcase-img" id="product_demo_img_2" style="background-image:url(/static/media/{{demo.picture_2}})">
+            </div>
+            <div class="col-lg-6 jumbotron text-black rounded bg-white">
+              <div class="my-auto demotext" id="c2_container">
+                <h1 class="display-4 font-italic" id="product_name_2">{{demo.name_2}}</h1>
+                <p class="lead my-3" style="color: black" id="description_2">{{demo.description_2}}</p>
+                <p class="lead mb-0"><a href="#" style="color: grey">View More</a></p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <!-- footer Preview -->
+      <section id="footer_preview" style="width:100%">
+        <!-- Footer -->
+        <footer class="page-footer font-small teal pt-4">
+          <!-- Footer Text -->
+          <div class="container-fluid text-center text-md-left">
+            <div class="footer-copyright text-center py-3">
+              <div id="footer_block">
+                <div id="shop_name">{{footer.Shopname}}</div>
+                <div id="company_name">{{footer.Company}}</div>
+              </div>
+              <span>© 2018 Copyright </span>
+              <a href="#" style="color: grey"> Yourwebsite.com</a>
+            </div>
+          </div>
+        </footer>
+      </section>
+        <!-- Footer -->
+    </section>
+      <!-- Preview ends here -->
+    </div>
+  </div>
+</div>
+</div>
+<!-- /page content -->
+
+</body>
+</html>

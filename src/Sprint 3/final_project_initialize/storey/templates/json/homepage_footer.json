@@ -1,0 +1,9 @@
+{
+  "footer_isVisible" : "{{footer.isVisible}}",
+  "footer_link_1": "{{footer.link_1}}",
+  "footer_link_1_content": "{{footer.link_1_content}}",
+  "footer_link_2": "{{footer.link_2}}",
+  "footer_link_2_content": "{{footer.link_2_content}}",
+  "footer_promotion": "{{footer.promotion}}",
+  "footer_promotion_content": "{{footer.promotion_content}}"
+}

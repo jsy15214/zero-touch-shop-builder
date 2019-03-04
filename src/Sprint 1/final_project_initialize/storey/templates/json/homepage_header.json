@@ -1,0 +1,7 @@
+{
+  "header_isVisible" : "{{header.isVisible}}",
+  "header_logo": {% if header.logo %}"{{header.logo.url}}"{% else %}null{% endif %},
+  "header_description": "{{header.text}}",
+  "header_height": "{{header.logo_height}}",
+  "header_width": "{{header.logo_width}}"
+}

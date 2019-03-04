@@ -1,0 +1,57 @@
+{% extends "base_product.html" %}
+
+{% block content %}
+
+{% load static %}
+
+  <!-- page content -->
+  <div class = "right_col" role="main" style = "padding-bottom: 750px;">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Order Overview <small>Get an overview of your order here</small></h2>
+                    
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="x_content">
+
+                  
+
+                    <div class="table-responsive">
+                      <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                          <tr class="headings">
+                            <th>ID</th>
+                            <th class="column-title">Placed Date</th>
+                            <th class="column-title">Status </th>
+                            <th class="column-title">Amount </th>
+                            <th class="column-title no-link last"><span class="nobr">Action</span>
+                            </th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          {% for order in order_list %}
+                          <tr class="even pointer">
+                            <td class="a-center">{{order.id}}
+                            </td>
+                            <td class=" ">{{order.placedDate}} </td>
+                            <td class=" ">
+                            <form action = "{% url 'ship' order.id %}" style="display: inline" method="get">
+                            <input value = {{ship_status}} type="submit"></form></td>
+                            <td class="a-right a-right ">{{order.get_totalPrice}}</td>
+                            <td class=" last">
+                              <form action = "{% url 'orderDetail' %}" style="display: inline">
+                            <input type="hidden" value={{order.id}} name="id">
+                             <button class="btn btn-info btn-xs" type="submit" value = {{order.id}}>
+                              View</button></form>
+                            </td>
+                          </tr>
+                          {% endfor %}
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                    <!-- end project list -->
+{% endblock content %}

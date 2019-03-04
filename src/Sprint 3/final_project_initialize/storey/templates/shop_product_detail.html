@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Edit Shopping Cart</title>
+  {% load static %}
+  {% block stylesheet %}
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" >
+  <link rel="stylesheet" href="{% static 'boot_for_nav.css' %}" >
+  <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
+  <!-- Custom Theme Style -->
+  <link rel="stylesheet" href="{% static 'custom.shop.css' %}" >
+  <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  {% endblock %}
+  <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
+
+</head>
+
+<body>
+  <!-- top nav -->
+  <div class="row" >
+    <section id="preview_navbar" style="width: 100%">
+      <nav class="navbar navbar-expand-md navbar-dark navbar-custom">
+        <div class="container">
+          <div id="navbar">
+            
+            <a class = 'nav-link' href="{% url 'shopCollectionList' shop_name=shop_name order_id=order_id%}" style="color: white">BACK TO PRODUCT LIST</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              {% if shop_owner == view_name %}
+              <li class="nav-item">
+                <a class = 'nav-link' href="{% url 'user_portal' %}">BACK TO USER PORTAL</a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- nav ends -->
+      <div class = "container_shop">
+        <!-- page content -->
+        <section id="product_detail" style="width: 100%; padding-bottom: 100px;">
+         <div class="container">
+           <div class="row">
+             <div class="col-xs-4 item-photo">
+              <img style="max-width:100%;" src="{% url 'picture' product.id%}" />
+            </div>
+            <div class="col-xs-5" style="border:0px solid gray">
+              <!-- Product name and seller -->
+              <h3 class="preview">{{product.name}}</h3>    
+
+              <!-- Price -->
+              <h3 class="preview" style="margin-top:0px; font-size: 20px">$ {{product.price}}</h3>
+
+              <!-- Detalles especificos del producto -->
+              <div class="section" style="padding-bottom: 100px">
+               
+              </div>                
+
+              <!-- Botones de compra -->
+              <div class="section" style="padding-bottom:20px;"><br>
+
+                <td><a href="{% url 'addToShoppingCart' shop_name=shop_name order_id=order_id product_id=product.id%}" class="btn btn-success"><i class="fa fa-angle-left"></i> Add To Shopping Cart</a></td> 
+              </div> 
+              <td><a href="{% url 'shopCollectionList' shop_name=shop_name order_id=order_id %}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>                                       
+            </div>                              
+
+            <div class="col-xs-9">
+
+              <div style="width:100%;border-top:1px solid silver">
+                <p style="padding:15px;" class="product_detail">
+
+                 
+                  {{product.description}}<br><br>
+                  Payments: VISA, MasterCard, American Express, Paypal, Dinners Club
+
+                </p>
+
+
+              </div>
+            </div>    
+
+          </div>
+        </div>
+
+      </section>
+      <div id="product_comments"> </div>
+
+      <!-- end page content -->
+
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+<!-- /page content -->
+
+<br>
+<br>
+</div>
+</div>
+</div>
+
+
+
+</body>
+
+
+
+</html>

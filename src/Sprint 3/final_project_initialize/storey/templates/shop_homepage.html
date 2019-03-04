@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Homepage</title>
+  {% load static %}
+  {% block stylesheet %}
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" >
+  <link rel="stylesheet" href="{% static 'boot_for_nav.css' %}" >
+  <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
+  <link rel="stylesheet" href="{% static 'footer.css' %}" >
+  <link rel="stylesheet" href="{% static 'one-page-wonder.css' %}" >
+  <!-- Custom Theme Style -->
+  <link rel="stylesheet" href="{% static 'navbar_preview.css' %}" >
+  <link rel="stylesheet" href="{% static 'custom.shop.css' %}" >
+  <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  {% endblock %}
+  <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
+
+</head>
+
+<body>
+ <!-- NavBar Preview -->
+ <div class="row" >
+  <section id="preview_navbar" style="width: 100%">
+
+    <nav class="navbar navbar-expand-md ">
+      <div class="container">
+        <div id="navbar">
+          <img src = "/static/media/{{navbar.logo}}" width="{{navbar.logo_width}}" height="{{navbar.logo_height}}" id="narbar_img">
+          <span class = 'navbartext'><a href="{% url 'shopwebsite_homepage' shop_name %}">{{navbar.text}}</a></span>
+          <a class= "navbartext" href="{% url 'shopCollectionList' shop_name=shop_name order_id=order_id%}" style="color: grey">Product List</a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Sign Up</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Log In</a>
+            </li>
+            {% if shop_owner == view_name %}
+            <li class="nav-item">
+            <a class = 'nav-link' href="{% url 'user_portal' %}">Back to User portal</a>
+          </li>
+          {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Header Preview -->
+    <section id="preview_header">
+      <div class="row" >
+       <header class="masthead text-center text-white" id="headimage" style="background-image:url(/static/media/{{header.logo}})">
+        <div class="masthead-content" >
+          <div class="container">
+            <h1 class="masthead-heading mb-0" id="headertitle">{{header.text}}</h1>
+          </div>
+        </div>
+      </header>
+      <!-- Product Demo Preview -->
+      <div class="Showcase" style="width: 100%">
+        <section id="preview_demo_1" style="width: 100%">
+          <div class="row no-gutters" style="margin-left: 0rem; margin-right: 0rem;">
+            <div class="col-lg-6 order-lg-1 jumbotron text-black rounded bg-white">
+              <div class="my-auto demotext" id="c1_container">
+                <h1 class="display-4 font-italic" id="product_name_1"> {{demo.name_1}} </h1>
+                <p class="lead my-3" style="color: black" id="description_1">{{demo.description_1}}</p>
+                <p class="lead mb-0"><a href="{% url 'shopCollectionList' shop_name=shop_name order_id=order_id%}" style="color: grey">View More</a></p>
+              </div>
+            </div>
+            <div class="col-lg-6 order-lg-2 text-white showcase-img" id="product_demo_img_1" style="background-image:url(/static/media/{{demo.picture_1}})">
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="preview_demo_2" style="width: 100%">
+        <div class="row no-gutters" style="margin-left: 0rem; margin-right: 0rem;">
+          <div class="col-lg-6 text-white showcase-img" id="product_demo_img_2"style="background-image:url(/static/media/{{demo.picture_2}})"></div>
+          <div class="col-lg-6 jumbotron text-black rounded bg-white">
+            <div class="my-auto demotext" id="c2_container">
+              <h1 class="display-4 font-italic" id="product_name_2">{{demo.name_2}}</h1>
+              <p class="lead my-3" style="color: black" id="description_2">{{demo.description_2}}</p>
+              <p class="lead mb-0"><a href="{% url 'shopCollectionList' shop_name=shop_name order_id=order_id%}" style="color: grey">View More</a></p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+      <!-- footer Preview -->
+      <section id="footer_preview" style="width:100%">
+        <!-- Footer -->
+        <footer class="page-footer font-small teal pt-4">
+          <!-- Footer Text -->
+          <div class="container-fluid text-center text-md-left">
+            <div class="footer-copyright text-center py-3">
+              <div id="footer_block">
+                <div id="shop_name">{{footer.Shopname}}</div>
+                <div id="company_name">{{footer.Company}}</div>
+              </div>
+              <span>© 2018 Copyright </span>
+              <a href="#" style="color: grey"> Yourwebsite.com</a>
+            </div>
+          </div>
+        </footer>
+      </section>
+        <!-- Footer -->
+
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<!-- /page content -->
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+</body>
+
+
+
+</html>

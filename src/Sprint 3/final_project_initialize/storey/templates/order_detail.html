@@ -1,0 +1,86 @@
+{% extends "base_product.html" %}
+
+{% block content %}
+{% load static %}
+  <!-- page content -->
+  <div class="right_col" role="main">
+    <section name = "shopping_cart" style="width: 100%; padding-top: 10px; padding-bottom: 450px;">
+          <div class="">
+            
+            </div>
+            
+            <div class="clearfix"></div>
+
+            <div class="row">
+
+            <table id="info" class="table  table-condensed" style="margin-bottom: 40px;">
+            <thead>
+              <tr>
+              <th style="width:50%">Order Information</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+              <h4 class="nomargin" style="margin-bottom: 0px;">Anonymous</h4>
+
+              Address Line #1<br>
+              Address Line #2, Apt Number<br>
+              Contact Phone Number<br>
+              Post Code<br>
+              </td>
+              
+              
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+
+            
+            <table id="cart" class="table  table-condensed">
+            <thead>
+            <tr>
+              <th style="width:50%">Product</th>
+              <th style="width:10%">Price</th>
+              <th style="width:8%">Quantity</th>
+              
+              <th style="width:10%"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in items %}
+            <tr>
+              <td data-th="Product">
+                <div class="row">
+                  <div class="col-sm-2 hidden-xs"><img src="{% url 'picture' item.product.id%}" alt="..." class="img-responsive"/></div>
+                  <div class="col-sm-10">
+                    <h4 class="nomargin">{{item.product.name}}</h4>
+                    <p>{{item.product.description}}</p>
+                  </div>
+                </div>
+              </td>
+              <td data-th="Price">${{item.product.price}}</td>
+              <td data-th="Quantity">
+                {{item.number}}
+              </td>
+              
+              <td class="actions" data-th="">
+                <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
+                <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>                
+              </td>
+            </tr>
+            {% endfor %}
+            
+              
+              <td colspan="2" class="hidden-xs"></td>
+              <td class="hidden-xs text-center"><strong>Total ${{order.get_totalPrice}}</strong></td>
+              <td><a href="{% url 'orderOverview' %}" class="btn btn-success btn-block">Back <i class="fa fa-angle-right"></i></a></td>
+            </tr>
+          </tfoot>
+        </table>
+        </div>
+        </section>
+                    <!-- end project list -->
+
+{% endblock content %}

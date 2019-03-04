@@ -1,0 +1,91 @@
+{% extends "base_product.html" %}
+
+{% block content %}
+{% load static %}
+
+  <!-- page content -->
+  <div class = "right_col" role="main">
+    <section name = "product_list" style="width: 100%; margin-top: 0px; padding-bottom: 550px;">
+          <div class="">
+            
+            </div>
+            
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Product List</h2>
+                    <ul class="nav navbar-right panel_toolbox" >
+                      <li>
+                        <button type="button" class="btn btn-success"><a href = "{%url 'addProduct'%}" style="color: white">Add product</a></button>
+                      </li>
+                      
+                      <li>
+                        <button type="button" class="btn btn-success"><a href = "{%url 'user_portal'%}" style="color: white">Go Back</a></button>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
+                    
+
+                    <!-- start project list -->
+                    <table class="table table-striped projects">
+                      <thead>
+                        <tr>
+                          <th style="width: 1%">#</th>
+                          <th style="width: 20%">Product Name</th>
+                          <th>Preview</th>
+                          <th>Price</th>
+                          <th>Category</th>
+                          <th style="width: 20%">#Edit</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for product in product_list %}
+                        <tr>
+                          <td>#</td>
+                          <td>
+                            <a>{{product.name}}</a>
+                            <br>
+                            <small>ID: {{product.id}}</small>
+                            <br>
+                            <small>In stock: {{product.quantity}}</small>
+                          </td>
+                          <td>
+                            <ul class="list-inline">
+                              <li>
+                                <img src="{% url 'picture' product.id %}" class="avatar" alt="picture">
+                              </li>
+                              
+                            </ul>
+                          </td>
+                          <td class="project_progress">
+                           ${{product.price}}
+                          </td>
+                          <td class="project_progress">
+                            {{product.category}}
+                          </td>
+                          <td>
+                            <!--
+                            <a href="#" class="btn btn-primary btn-xs" ><i class="fa fa-folder"></i> View </a>
+                          -->
+                            <form action = "{% url 'edit_product' %}" style="display: inline">
+                            <input type="hidden" value={{product.id}} name="id">
+                             <button class="btn btn-info btn-xs" type="submit" value = {{product.id}}><i class="fa fa-pencil"></i> Edit </button></form>
+                             <form action = "{% url 'delete_product' %}" style="display: inline-block;">
+                            <input type="hidden" value={{product.id}} name="id">
+                            <button class="btn btn-info btn-xs" type="submit" value = {{product.id}} style="display: inline-block;"><i class="fa fa-trash-o"></i> Delete </button></form>
+                          </td>
+                        
+                        </tr>
+
+                        {% endfor %}
+                        
+                      </tbody>
+                    </table>
+                    <!-- end project list -->
+{% endblock content %}
